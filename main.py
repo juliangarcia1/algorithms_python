@@ -1,12 +1,10 @@
 import sys
-# from random import randint
 import random
-
-a= range(20)
-random.shuffle(a)
 from time import sleep
 
-# a = [9, 16, 5, 15, 17, 2, 1, 11, 6, 0, 10, 14, 18, 13, 19, 8, 3, 4, 7, 12]
+
+a= list(range(100))
+random.shuffle(a)
 
 
 def buble_sort(array):
