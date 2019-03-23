@@ -15,7 +15,6 @@ def buble_sort(array):
     '''
     flg_changed = False
     last_idx_changed=range(len(array[:-1]))
-    print('Initial a:          {}'.format(array))
     count = 0
     iterations = 0
     for ind in range(len(array[:-1])):
@@ -27,7 +26,6 @@ def buble_sort(array):
         iterations = ind
         if count == 0:
             break
-    print('After Bubble Sort a:{} \n {} times'.format(array, iterations))
 
 
 def main(param):
