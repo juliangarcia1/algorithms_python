@@ -1,6 +1,8 @@
 import sys
 import random
+import pprint
 from time import sleep
+from copy import deepcopy
 
 
 a= list(range(100))
@@ -66,7 +68,27 @@ def merge_sort(arr):
 
 
 def main(param):
-    buble_sort(a)
+    max_numbers = 20
+    pprint.pprint(a,width=80, compact=True)
+    print("ORIGINAL ARRAY", str(a[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
+    from datetime import datetime
+
+    print("*"*15, "Bubble Sort", "*"*15)
+    b = deepcopy(a[:max_numbers])
+    time_start = datetime.now()
+    res_bs = buble_sort(b[:max_numbers])
+    time_end = datetime.now()
+    print("Buble sort:", str(res_bs[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]" )
+    print("Consumed time:", time_end - time_start)
+
+    print("*"*15, "Merge Sort", "*"*15)
+    c = deepcopy(a)
+    print('Input c:', str(c[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
+    time_start = datetime.now()
+    res_ms = merge_sort(c)
+    time_end = datetime.now()
+    print("Merge sort:", str(res_ms[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]" )
+    print("Consumed time:", time_end - time_start)
 
 
 if __name__ == '__main__':
