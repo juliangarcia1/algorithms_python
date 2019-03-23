@@ -19,13 +19,14 @@ def buble_sort(array):
     iterations = 0
     for ind in range(len(array[:-1])):
         for idx in range(len(array[:-1]) - ind):
-            if array[idx] < array[idx + 1]:
+            if array[idx] > array[idx + 1]:
                 last_idx_changed=idx
                 array.insert(idx, array.pop(idx + 1))
                 count += 1
         iterations = ind
         if count == 0:
             break
+    return array
 
 
 def main(param):
