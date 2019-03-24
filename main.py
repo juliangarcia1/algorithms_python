@@ -78,16 +78,19 @@ def main(param):
     time_start = datetime.now()
     res_bs = buble_sort(b)
     time_end = datetime.now()
-    print("Buble sort:", str(res_bs[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]" )
+    if print_res:
+        print("Buble sort:", str(res_bs[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
     print("Consumed time:", time_end - time_start)
 
     print("*"*15, "Merge Sort", "*"*15)
     c = deepcopy(a)
-    print('Input c:', str(c[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
+    if print_res:
+        print('Input c:', str(c[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
     time_start = datetime.now()
     res_ms = merge_sort(c)
     time_end = datetime.now()
-    print("Merge sort:", str(res_ms[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]" )
+    if print_res:
+        print("Merge sort:", str(res_ms[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]" )
     print("Consumed time:", time_end - time_start)
 
 
