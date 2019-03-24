@@ -15,20 +15,20 @@ def buble_sort(array):
     :param array: List of numbers to be sorted
     :return: None
     '''
-    flg_changed = False
-    last_idx_changed=range(len(array[:-1]))
+    last_idx_changed = range(len(array[:-1]))
     count = 0
     iterations = 0
     for ind in range(len(array[:-1])):
         for idx in range(len(array[:-1]) - ind):
             if array[idx] > array[idx + 1]:
-                last_idx_changed=idx
+                last_idx_changed = idx
                 array.insert(idx, array.pop(idx + 1))
                 count += 1
         iterations = ind
         if count == 0:
             break
     return array
+
 def order_two_arrays(res, l_arr, r_arr):
     i, j, k= (0, 0, 0)
     while i < len(l_arr) and j < len(r_arr):
