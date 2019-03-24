@@ -74,9 +74,9 @@ def main(param):
     from datetime import datetime
 
     print("*"*15, "Bubble Sort", "*"*15)
-    b = deepcopy(a[:max_numbers])
+    b = deepcopy(a)
     time_start = datetime.now()
-    res_bs = buble_sort(b[:max_numbers])
+    res_bs = buble_sort(b)
     time_end = datetime.now()
     print("Buble sort:", str(res_bs[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]" )
     print("Consumed time:", time_end - time_start)
