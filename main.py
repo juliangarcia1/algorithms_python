@@ -64,12 +64,10 @@ def merge_sort(arr):
     else:
         return arr
         
-
-
-
 def main(param):
-    max_numbers = 20
-    pprint.pprint(a,width=80, compact=True)
+    max_numbers = 20 # len(a)
+    print_res =  True
+    print(a)
     print("ORIGINAL ARRAY", str(a[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
     from datetime import datetime
 
