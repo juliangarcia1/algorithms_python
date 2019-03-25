@@ -1,15 +1,13 @@
 import sys
-import random
 import pprint
+import random
 from time import sleep
 from copy import deepcopy
-
-
-a= list(range(100))
+from datetime import datetime
+a= list(range(1000))
 random.shuffle(a)
 
-
-def buble_sort(array):
+def bubble_sort(array):
     '''
     Operations O(n^2), space O(1)
     :param array: List of numbers to be sorted
@@ -63,34 +61,66 @@ def merge_sort(arr):
         return res
     else:
         return arr
+def get_split_point(arr, first, last):
+    pivot = arr[first]
+    lower = first + 1
+    upper = last
+
+    flg_done = False
+    while not flg_done:
+        # Increase lower until it finds a value greater than pivot
+        while lower <= upper and arr[lower] <= pivot:
+            lower += 1
+        # Decrease upper until it finds a value lower than pivot
+        while upper >= lower and arr[upper] >= pivot:
+            upper -= 1
+
+        # If there is a cross, it means upper gets lower than  lower, break the loop
+        if lower > upper:
+            flg_done = True
+        else: # Swap upper and lower
+            temp = arr[lower]
+            arr[lower] = arr[upper]
+            arr[upper] = temp
+
+    # Swap positions between upper and pivot 
+    temp = arr[first]
+    arr[first] = arr[upper]
+    arr[upper] = temp
+
+    return upper # This is the last position of pivot
+
+def quick_sort(arr, first, last):
+
+    if first < last:
+        split_point = get_split_point(arr, first, last)
+        quick_sort(arr, first, split_point -1)
+        quick_sort(arr, split_point+1, last)
         
+def print_result(org_arr, func, args_dict={}, max_numbers=20, print_res=True):
+    title = func.__name__.replace('_', ' ').title()
+    print("*"*15, title , "*"*15)
+
+    c = deepcopy(org_arr)
+    if print_res:
+        print('Input: ', str(c[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
+    time_start = datetime.now()
+    res_alg = func(c, **args_dict) if args_dict else func(c)
+    res_alg = c if args_dict else res_alg
+    time_end = datetime.now()
+    print('Lenght of array:',len(a))
+    if print_res:
+        print(title, ": ", str(res_alg[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]" )
+    print("Elapsed time:", time_end - time_start)
+
 def main(param):
     max_numbers = 20 # len(a)
-    print_res =  True
-    print(a)
     print("ORIGINAL ARRAY", str(a[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
-    from datetime import datetime
-
-    print("*"*15, "Bubble Sort", "*"*15)
-    b = deepcopy(a)
-    time_start = datetime.now()
-    res_bs = buble_sort(b)
-    time_end = datetime.now()
-    if print_res:
-        print("Buble sort:", str(res_bs[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
-    print("Consumed time:", time_end - time_start)
-
-    print("*"*15, "Merge Sort", "*"*15)
-    c = deepcopy(a)
-    if print_res:
-        print('Input c:', str(c[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
-    time_start = datetime.now()
-    res_ms = merge_sort(c)
-    time_end = datetime.now()
-    if print_res:
-        print("Merge sort:", str(res_ms[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]" )
-    print("Consumed time:", time_end - time_start)
-
+    algorithm_list = [(bubble_sort, {}),
+                      (merge_sort, {}),
+                      (quick_sort, {'first':0,'last':len(a)-1}) ]
+    for algorithm in algorithm_list:
+        print_result(org_arr=a, func=algorithm[0], args_dict=algorithm[1])
 
 if __name__ == '__main__':
     main(sys.argv[:2])
