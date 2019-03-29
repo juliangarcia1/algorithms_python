@@ -26,6 +26,15 @@ def bubble_sort(array):
         if count == 0:
             break
     return array
+    
+def insertion_sort(arr):
+    offset = 1
+    for i in range(len(arr)):
+        for j in range(i+1)[::-1]: 
+            if arr[j+offset] > arr[i]:
+                temp = arr[j+offset]
+                a[j+offset] = arr[j]
+                arr[j] = temp
 
 def order_two_arrays(res, l_arr, r_arr):
     i, j, k= (0, 0, 0)
@@ -121,9 +130,11 @@ def main(param):
     print("ORIGINAL ARRAY", str(a[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
     algorithm_list = [(bubble_sort, {}),
                       (merge_sort, {}),
-                      (quick_sort, {'first':0,'last':len(a)-1}) ]
+                      (quick_sort, {'first':0,'last':len(a)-1}),
+                      (insertion_sort, {})]
     for algorithm in algorithm_list:
         print_result(org_arr=a, func=algorithm[0], args_dict=algorithm[1])
 
 if __name__ == '__main__':
     main(sys.argv[:2])
+
