@@ -112,6 +112,9 @@ def print_result(org_arr, func, args_dict={}, max_numbers=20, print_res=True):
     if print_res:
         print(title, ": ", str(res_alg[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]" )
     print("Elapsed time:", time_end - time_start)
+    
+def is_sorted(arr):
+    return all([ arr[i] < arr[i+1] for i in range(len(arr)-1)])
 
 def main(param):
     max_numbers = 20 # len(a)
