@@ -28,13 +28,12 @@ def bubble_sort(array):
     return array
     
 def insertion_sort(arr):
-    offset = 1
     for i in range(len(arr)):
-        for j in range(i+1)[::-1]: 
-            if arr[j+offset] > arr[i]:
-                temp = arr[j+offset]
-                a[j+offset] = arr[j]
-                arr[j] = temp
+        for j in range(i): 
+            if arr[j] > arr[i]:
+                temp = arr.pop(i)
+                arr.insert(j, temp) 
+    return arr
 
 def order_two_arrays(res, l_arr, r_arr):
     i, j, k= (0, 0, 0)
