@@ -1,14 +1,16 @@
 import sys
 n = 20
-arr = list(range(n))
+a = list(range(n))
 
 def binary_search(arr, value):
+    '''Search a value in a ordered array
+    '''
     l=len(arr)
     upper = l-1
     lower = 0
     
-    while lower < upper:
-        midpoint = (upper-lower)//2
+    while lower <= upper:
+        midpoint = (upper+lower)//2
         if value == arr[midpoint]:
             return  midpoint
         elif value > arr[midpoint]:
@@ -16,9 +18,10 @@ def binary_search(arr, value):
         else:
             upper = midpoint - 1
 
-    return None
+    if lower > upper:
+        return None
             
         
 if  __name__ == '__main__':
-    print(arr)
-    print(binary_search(arr, 21))
+    print(a)
+    print(binary_search(a, 10))
