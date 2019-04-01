@@ -1,9 +1,12 @@
-import sys
 import pprint
 import random
-from time import sleep
+import sys
 from copy import deepcopy
 from datetime import datetime
+from time import sleep
+
+from utils.output_format import print_result
+
 a= list(range(1000))
 random.shuffle(a)
 
@@ -105,35 +108,19 @@ def quick_sort(arr, first, last):
         quick_sort(arr, first, split_point -1)
         quick_sort(arr, split_point+1, last)
         
-def print_result(org_arr, func, args_dict={}, max_numbers=20, print_res=True):
-    title = func.__name__.replace('_', ' ').title()
-    print("*"*15, title , "*"*15)
-
-    c = deepcopy(org_arr)
-    if print_res:
-        print('Input: ', str(c[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
-    time_start = datetime.now()
-    res_alg = func(c, **args_dict) if args_dict else func(c)
-    res_alg = c if args_dict else res_alg
-    time_end = datetime.now()
-    print('Lenght of array:',len(a))
-    if print_res:
-        print(title, ": ", str(res_alg[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]" )
-    print("Elapsed time:", time_end - time_start)
-    
 def is_sorted(arr):
     return all([ arr[i] < arr[i+1] for i in range(len(arr)-1)])
 
 def main(param):
     max_numbers = 20 # len(a)
     print("ORIGINAL ARRAY", str(a[:max_numbers])[:-1], " ...]" if max_numbers < len(a) else "]")
-    algorithm_list = [(bubble_sort, {}),
+    algorithm_list = [
+                      (insertion_sort, {}),
                       (merge_sort, {}),
-                      (quick_sort, {'first':0,'last':len(a)-1}),
-                      (insertion_sort, {})]
+                      (quick_sort, {'first':0,'last':len(a)-1})
+            ]
     for algorithm in algorithm_list:
         print_result(org_arr=a, func=algorithm[0], args_dict=algorithm[1])
 
 if __name__ == '__main__':
     main(sys.argv[:2])
-
