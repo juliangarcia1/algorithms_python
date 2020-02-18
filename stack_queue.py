@@ -25,11 +25,12 @@ class Stack:
 
 class Queue:
     def __init__(self):
-        self.head = 0
+        self.Q = [None]*10
         self.tail = 0
-        pass
+        self.head = len(self.Q)
 
-    def enqueue(self):
+    def enqueue(self, val):
+
         pass
 
     def dequeue(self):
